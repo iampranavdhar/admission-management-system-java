@@ -1,0 +1,110 @@
+create sequence seq
+increment by 1
+start with 640001
+minvalue 640001
+no maxvalue
+no cycle;
+
+SELECT nextval('seq');
+
+create table appno(
+ano bigint primary key);
+
+create table merit_list(
+ano bigint references appno(ano),
+cname varchar(100),
+category varchar(10),
+dlevel varchar(6),
+gpa int,
+p1 varchar(40),
+p2 varchar(40),
+p3 varchar(40),
+ca varchar(100),
+conno varchar(12),gender varchar(10));
+
+select * from merit_list;
+
+create table fee(
+ano bigint references appno(ano),
+status varchar(12));
+
+
+create table log(
+username varchar(30),
+passwd varchar(30),
+mob varchar(12));
+
+
+
+create table merit_details(
+ano bigint references appno(ano),
+dlevel varchar(6),
+p1 varchar(40),
+p2 varchar(40),
+p3 varchar(40));
+
+select * from merit_details;
+
+create table candidate_details(
+ano bigint references appno(ano),
+cname varchar(40),
+cdob varchar(10),
+cgender varchar(10),
+ccat varchar(10),
+cmob varchar(12),
+cemail varchar(100));
+
+create table candidate_address(
+ano bigint references appno(ano),
+caddress varchar(100),
+ccity varchar(40),
+cstate varchar(50),
+cpin varchar(10));
+
+create table school_details(
+ano bigint references appno(ano),
+sname varchar(40),
+sboard varchar(30),
+scity varchar(40),
+saddress varchar(60),
+syop varchar(4),
+phy int,
+chem int,
+maths int,
+avg int,
+jee int,
+gpa int);
+
+create table codet(
+ano bigint references appno(ano),
+coname varchar(40),
+couniv varchar(30),
+cocity varchar(40),
+coaddress  varchar(60),
+coyop varchar(4),
+per int,
+gate int,
+gpa int);
+
+
+create table parents_details(
+ano bigint references appno(ano),
+fname varchar(40),
+fmob varchar(12),
+mname varchar(40),
+mmob varchar(12));
+
+create view master as
+select appno.ano,dlevel,p1,p2,p3,cname,cdob,cgender,ccat,cmob,cemail,caddress,ccity,cstate,cpin,sname,sboard,scity,saddress,syop,phy,chem,maths,jee,coname,couniv,cocity,coaddress,coyop,per,gate,fname,fmob,mname,mmob
+from appno,merit_details,candidate_details,candidate_address,school_details,codet,parents_details
+where appno.ano=merit_details.ano and appno.ano=candidate_details.ano and appno.ano=candidate_address.ano and appno.ano=school_details.ano and appno.ano=codet.ano and appno.ano=parents_details.ano;
+
+create view bav as
+select merit_details.ano,ccat,gpa
+from merit_details,candidate_details,school_details
+where merit_details.ano=candidate_details.ano and merit_details.ano=school_details.ano and merit_details.dlevel='B.Tech';
+
+create view mav as
+select merit_details.ano,ccat,gpa
+from merit_details,candidate_details,codet
+where merit_details.ano=candidate_details.ano and merit_details.ano=codet.ano and merit_details.dlevel='M.Tech';
