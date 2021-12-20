@@ -5,7 +5,7 @@ import java.sql.*;
 public class Database {
     public static String urld = "jdbc:postgresql://localhost:5432/final_db";
     public static String user = "postgres";
-    public static String pass = "sudhanu20";
+    public static String pass = "";
     public static Connection con = null;
     public static PreparedStatement ps = null;
     public static ResultSet rs = null;

@@ -396,11 +396,14 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
     }
 
     public static void main(String[] args) {
+        Color customBlue = new Color(53, 204, 237);
+
         AdmissionLogin adf = new AdmissionLogin("Admission Form");
         adf.setSize(1300, 730);
         adf.setLocation(30, 0);
         adf.setDefaultCloseOperation(EXIT_ON_CLOSE);
         adf.setResizable(false);
         adf.setVisible(true);
+        adf.getContentPane().setBackground(customBlue);
     }
 }

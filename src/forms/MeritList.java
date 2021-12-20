@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.sql.*;
 
 public class MeritList extends JFrame {
+  JLabel bgLabel;
   JTextArea jta = new JTextArea();
   JScrollPane sp1 = new JScrollPane(jta);
 
@@ -13,6 +14,11 @@ public class MeritList extends JFrame {
     sp1.setBounds(3, 3, 350, 650);
     add(sp1);
     sp1.setVisible(true);
+
+    bgLabel = new JLabel(new ImageIcon("generateMeritListbg.png"));
+    bgLabel.setBounds(0, 0, 900, 600);
+    add(bgLabel);
+
     try {
       String s1 = "Amrita Vishwa Vishyapeetham";
       String s2 = "Merit List";
@@ -20,7 +26,7 @@ public class MeritList extends JFrame {
       Connection con = db.connect();
       Statement st = con.createStatement();
       ResultSet rs = st.executeQuery("select * from merit_list order by ano");
-      jta.append("\t                        " + s1 + "\n\t                    " + s2 + "\n\n\n");
+      jta.append("\t" + s1 + "\n\t               " + s2 + "\n\n\n");
       while (rs.next()) {
         String x = rs.getString("ca");
         String y = rs.getString("gender");
@@ -52,7 +58,7 @@ public class MeritList extends JFrame {
   public static void main(String[] args) {
     MeritList ml = new MeritList("LIST");
     ml.setSize(900, 600);
-    ml.setLocation(500, 10);
+    ml.setLocation(550, 225);
     ml.setDefaultCloseOperation(EXIT_ON_CLOSE);
     ml.setResizable(false);
     ml.setVisible(true);

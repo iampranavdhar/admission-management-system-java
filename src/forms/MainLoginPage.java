@@ -92,13 +92,13 @@ public class MainLoginPage extends JFrame implements ActionListener, MouseListen
         if (me.getSource() == fee_structure_btn) {
             Fee obj = new Fee("Fee Structure");
             obj.setSize(900, 600);
-            obj.setLocation(350, 100);
+            obj.setLocation(550, 225);
             obj.setVisible(true);
         }
         if (me.getSource() == seat_btn) {
             SeatMatrixB smb = new SeatMatrixB("SeatMatrix");
             smb.setSize(900, 600);
-            smb.setLocation(250, 150);
+            smb.setLocation(550, 225);
             smb.setVisible(true);
         }
     }
@@ -110,7 +110,7 @@ public class MainLoginPage extends JFrame implements ActionListener, MouseListen
         if (me.getSource() == instructions_btn) {
             steps s = new steps("Instructions To Follow");
             s.setSize(900, 600);
-            s.setLocation(400, 200);
+            s.setLocation(550, 225);
             s.setVisible(true);
         }
         if (me.getSource() == admin_home_btn) {

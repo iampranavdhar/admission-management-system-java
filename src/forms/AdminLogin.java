@@ -62,7 +62,7 @@ public class AdminLogin extends JFrame implements ActionListener {
                     Admin adm = new Admin("Admin Login");
                     dispose();
                     adm.setSize(900, 600);
-                    adm.setLocation(350, 125);
+                    adm.setLocation(550,225);
                     adm.setVisible(true);
                     adm.getContentPane();
                 } else {

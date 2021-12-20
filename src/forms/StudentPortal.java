@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
 import java.util.Calendar;
 
 public class StudentPortal extends JFrame implements ActionListener {
-    JLabel l1,  l3, l7, l8, bgLabel;
+    JLabel l1, l3, l7, l8, bgLabel;
     JButton b1, b2, b3, b4, b5, b6, b7;
     String nam;
     String lid;
@@ -165,38 +165,36 @@ public class StudentPortal extends JFrame implements ActionListener {
         if (ae.getSource() == b1) {
             AdmissionLogin adm = new AdmissionLogin("Admission Form");
             adm.setSize(1300, 730);
-            adm.setLocation(30, 0);
+            adm.setLocation(550, 225);
             adm.setVisible(true);
+            Color customBlue = new Color(53, 204, 237);
+
+            adm.getContentPane().setBackground(customBlue);
+
         }
         if (ae.getSource() == b2) {
             ChangePassword chp = new ChangePassword("Change Password");
             chp.setSize(900, 600);
-            chp.setLocation(400, 150);
+            chp.setLocation(550, 225);
             chp.setVisible(true);
         }
         if (ae.getSource() == b3) {
             MeritList ml = new MeritList("LIST");
             ml.setSize(900, 600);
-            ml.setLocation(500, 10);
+            ml.setLocation(550, 225);
             ml.setVisible(true);
         }
         if (ae.getSource() == b4) {
             PayFee pf = new PayFee("PAY FEE", apno);
             pf.setSize(900, 600);
-            pf.setLocation(500, 200);
+            pf.setLocation(550, 225);
             pf.setVisible(true);
 
-        }
-        if (ae.getSource() == b5) {
-            FeeReciept fr = new FeeReciept("FEE RECIEPT", apno);
-            fr.setSize(900, 600);
-            fr.setLocation(250, 200);
-            fr.setVisible(true);
         }
         if (ae.getSource() == b6) {
             Instructions ins = new Instructions("INSTRUCTIONS");
             ins.setSize(900, 600);
-            ins.setLocation(250, 200);
+            ins.setLocation(550, 225);
             ins.setVisible(true);
         }
         if (ae.getSource() == b7) {

@@ -59,7 +59,7 @@ public class Admin extends JFrame implements ActionListener {
         if (ae.getSource() == set_cutoff_btn) {
             CutoffGenerator lst = new CutoffGenerator("set btech cutoff");
             lst.setSize(900, 600);
-            lst.setLocation(50, 50);
+            lst.setLocation(550,225);
             lst.setVisible(true);
         }
 
@@ -94,7 +94,7 @@ public class Admin extends JFrame implements ActionListener {
         if (ae.getSource() == show_merit_list) {
             MeritList ml = new MeritList("LIST");
             ml.setSize(900, 600);
-            ml.setLocation(500, 10);
+            ml.setLocation(550,225);
             ml.setVisible(true);
         }
     }
@@ -102,7 +102,7 @@ public class Admin extends JFrame implements ActionListener {
     public static void main(String[] args) {
         Admin ad = new Admin("Admin Panel");
         ad.setSize(900, 600);
-        ad.setLocation(300, 10);
+        ad.setLocation(550,225);
         ad.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ad.setVisible(true);
         ad.setResizable(false);

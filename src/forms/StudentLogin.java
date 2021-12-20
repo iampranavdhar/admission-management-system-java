@@ -63,10 +63,11 @@ public class StudentLogin extends JFrame implements ActionListener {
       try {
         Database db = new Database();
         con = db.connect();
-        if (!(t1.getText()).equals("") && !(p1.getText()).equals("")) {
+        if (!(t1.getText()).equals("") && !(p1.getPassword()).equals("")) {
           ps = con.prepareStatement("select * from log where username=? and passwd=? ");
           ps.setString(1, t1.getText());
-          ps.setString(2, p1.getText());
+          String pass = new String(p1.getPassword());
+          ps.setString(2, pass);
           rs = ps.executeQuery();
           rs.next();
           ps1 = con.prepareStatement("select mob from log where username=?");
@@ -77,7 +78,7 @@ public class StudentLogin extends JFrame implements ActionListener {
           dispose();
           StudentPortal stp = new StudentPortal("Student Panel", pno);
           stp.setSize(900, 600);
-          stp.setLocation(350, 125);
+          stp.setLocation(550,225);
           stp.setVisible(true);
           stp.setResizable(false);
           stp.getContentPane();
@@ -93,7 +94,7 @@ public class StudentLogin extends JFrame implements ActionListener {
   public static void main(String[] args) {
     StudentLogin log = new StudentLogin("Log In");
     log.setSize(900, 600);
-    log.setLocation(450, 150);
+    log.setLocation(550, 225);
     log.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     log.setResizable(false);
     log.setVisible(true);
