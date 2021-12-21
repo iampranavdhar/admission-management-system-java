@@ -1,7 +1,6 @@
 package forms;
 
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.event.*;
 import java.sql.*;
@@ -11,8 +10,8 @@ public class Register extends JFrame implements ActionListener {
     JTextField t1, t2;
     JPasswordField p1;
     JButton submit_btn, cancel_btn;
-    private Connection con;
-    private PreparedStatement ps;
+    private Connection con; // A Connection is the session between java application and database.
+    private PreparedStatement ps; // PreparedStatement is used to create a precompiled SQL statement.
 
     public Register(String title) {
         super(title);
@@ -57,7 +56,7 @@ public class Register extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == cancel_btn) {
-            dispose();
+            dispose(); // dispose() method is used to close the current window.
         }
         if (ae.getSource() == submit_btn) {
             String s1 = t1.getText(), s2 = t2.getText();
@@ -65,19 +64,26 @@ public class Register extends JFrame implements ActionListener {
             char[] c2 = s2.toCharArray();
 
             try {
-                Database db = new Database();
+                Database db = new Database(); // create a new object of Database class.
                 con = db.connect();
-                ps = con.prepareStatement("insert into log values(?,?,?)");
-                if (!(p1.getText()).equals("") && !(t2.getText()).equals("") && !s1.equals("")) {
+                ps = con.prepareStatement("insert into log values(?,?,?)"); // create a new PreparedStatement object.
+                if (!(p1.getText()).equals("") && !(t2.getText()).equals("") && !s1.equals("") && t2.getText().matches("^[0-9]*$") && t2.getText().length()==10) {
                     ps.setString(1, s1);
                     ps.setString(2, p1.getText());
                     ps.setString(3, t2.getText());
-                    ps.executeUpdate();
+                    ps.executeUpdate(); // executeUpdate() method is used to execute the query.
                     JOptionPane.showMessageDialog(null,
                             "Registration Successful,Use your Username and password to login");
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Name or Password Cannot be Blank\nRegistration Unsuccessful,Try again");
+                    if(!t2.getText().matches("^[0-9]*$") || t2.getText().length()!=10){
+                        JOptionPane.showMessageDialog(null,
+                        "Invalid Mobile Number");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,
+                            "Invalid Username or Password");
+                    }
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Something Went Wrong :  " + e);
@@ -86,7 +92,7 @@ public class Register extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Register reg = new Register("Registration");
+        Register reg = new Register("Registration"); 
         reg.setSize(900, 600);
         reg.setLocation(420, 240);
         reg.setDefaultCloseOperation(EXIT_ON_CLOSE);

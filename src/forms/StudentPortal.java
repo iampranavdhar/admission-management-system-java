@@ -163,7 +163,7 @@ public class StudentPortal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == b1) {
-            AdmissionLogin adm = new AdmissionLogin("Admission Form");
+            AdmissionForm adm = new AdmissionForm("Admission Form");
             adm.setSize(1300, 730);
             adm.setLocation(550, 225);
             adm.setVisible(true);

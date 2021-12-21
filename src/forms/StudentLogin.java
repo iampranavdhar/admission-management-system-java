@@ -11,7 +11,7 @@ public class StudentLogin extends JFrame implements ActionListener {
 
   private Connection con;
   private PreparedStatement ps, ps1;
-  private ResultSet rs, rs1;
+  private ResultSet rs, rs1; 
   JButton login, cancel;
   JLabel login_id, password, bgLabel;
   JTextField t1;
@@ -25,7 +25,7 @@ public class StudentLogin extends JFrame implements ActionListener {
     password = new JLabel("Password");
     t1 = new JTextField();
     p1 = new JPasswordField();
-    setLayout(null);
+    setLayout(null); // setLayout() method is used to set the layout of the frame.
     login_id.setBounds(540, 180, 100, 30);
     password.setBounds(540, 230, 100, 30);
     t1.setBounds(640, 180, 150, 30);

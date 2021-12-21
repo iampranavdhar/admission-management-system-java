@@ -8,8 +8,7 @@ import javax.swing.*;
 public class MainLoginPage extends JFrame implements ActionListener, MouseListener {
 
     JMenuBar mb;
-    JMenu fee_structure_btn, seat_btn;
-    JMenuItem exit_btn, instructions_btn, admin_home_btn, space_btn;
+    JMenu fee_structure_btn, seat_btn, exit_btn, instructions_btn, admin_home_btn, space_btn;
     JLabel bgLabel;
     Font f, f1, f2;
     JButton student_login_btn, student_register_btn;
@@ -29,7 +28,7 @@ public class MainLoginPage extends JFrame implements ActionListener, MouseListen
 
         student_login_btn = new JButton("Log in");
         student_register_btn = new JButton("Register");
-        mb.add(admin_home_btn);
+        mb.add(admin_home_btn); // add menu to menu bar
         mb.add(fee_structure_btn);
         mb.add(seat_btn);
         mb.add(instructions_btn);
@@ -45,19 +44,21 @@ public class MainLoginPage extends JFrame implements ActionListener, MouseListen
 
         student_login_btn.setBounds(350, 280, 100, 40);
         student_register_btn.setBounds(470, 280, 100, 40);
+
         Color customColor = new Color(175, 12, 62);
         student_login_btn.setBackground(customColor);
         student_register_btn.setBackground(customColor);
         student_login_btn.setForeground(Color.white);
         student_register_btn.setForeground(Color.white);
-        add(student_login_btn);
+
+        add(student_login_btn); // add button to frame
         add(student_register_btn);
 
         mb.setBounds(0, 0, 1000, 50);
         mb.setBackground(Color.white);
         mb.setForeground(Color.black);
         exit_btn.setForeground(Color.red);
-        add(bgLabel);
+        add(bgLabel); // add label to frame
         add(mb);
 
         student_login_btn.addActionListener(this);
@@ -142,7 +143,7 @@ public class MainLoginPage extends JFrame implements ActionListener, MouseListen
         obj.setSize(900, 600);
         obj.setLocation(550, 225);
         obj.setTitle("Amrita University, Amritapuri Admission Portal");
-        obj.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        obj.setDefaultCloseOperation(EXIT_ON_CLOSE); // close the window
         obj.setResizable(false);
         obj.setVisible(true);
     }

@@ -4,7 +4,7 @@ import java.awt.Color;
 import javax.swing.*;
 
 public class SeatMatrixB extends JFrame {
-  JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
+  JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, bgLabel;
 
   SeatMatrixB(String title) {
     super(title);
@@ -19,14 +19,14 @@ public class SeatMatrixB extends JFrame {
     l10 = new JLabel("40");
     l11 = new JLabel("12");
     setLayout(null);
-    l1.setBounds(5, 10, 300, 30);
-    l2.setBounds(5, 50, 200, 30);
+    l1.setBounds(25, 160, 300, 30);
+    l2.setBounds(25, 190, 200, 30);
     l2.setForeground(Color.blue);
-    l3.setBounds(5, 90, 200, 30);
+    l3.setBounds(25, 230, 200, 30);
     l3.setForeground(Color.blue);
-    l4.setBounds(5, 130, 200, 30);
+    l4.setBounds(25, 270, 250, 30);
     l4.setForeground(Color.blue);
-    l5.setBounds(5, 170, 200, 30);
+    l5.setBounds(25, 310, 200, 30);
     l5.setForeground(Color.blue);
     add(l1);
     add(l2);
@@ -42,6 +42,11 @@ public class SeatMatrixB extends JFrame {
     l10.setForeground(Color.red);
     l11.setBounds(260, 170, 100, 30);
     l11.setForeground(Color.red);
+
+    bgLabel = new JLabel(new ImageIcon("seatMatrixbg.png"));
+    bgLabel.setBounds(0, 0, 900, 600);
+    add(bgLabel);
+
     add(l7);
     add(l8);
     add(l9);
@@ -51,7 +56,7 @@ public class SeatMatrixB extends JFrame {
 
   public static void main(String[] args) {
     SeatMatrixB obj = new SeatMatrixB("Seat Matrix BTech");
-    obj.setSize(725, 250);
+    obj.setSize(900, 600);
     obj.setLocation(250, 150);
     obj.setDefaultCloseOperation(EXIT_ON_CLOSE);
     obj.setVisible(true);

@@ -4,25 +4,28 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.awt.Color;
+import java.awt.Font;
 
-public class AdmissionLogin extends JFrame implements ActionListener, FocusListener {
+public class AdmissionForm extends JFrame implements ActionListener, FocusListener {
     JLabel l1, l2, l3, l4, l5, l6, l7, l8, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23,
             l24, l25, l26, l27, l28, l29, l30, l31, l32, l33, l34, l35, l36, l37, l38, l39, l40, l41, l42, l43, l44,
-            l45, l46;
+            l45, l46, l0, bgLabel;
     JComboBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8;
     JTextField t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22;
     JTextArea jta1, jta2, jta3;
-    JRadioButton r1, r2;
+    JRadioButton r1, r2, r3, r4;
     JButton b1;
     ButtonGroup bg;
     private Connection con;
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9;
     private ResultSet rs;
     public static int an = 6901;
+    Font f;
 
-    public AdmissionLogin(String title) {
+    public AdmissionForm(String title) {
         super(title);
         l1 = new JLabel("PROGRAMME SELECTION");
+        l0 = new JLabel("Mode");
         l3 = new JLabel("Course Choice");
         l4 = new JLabel("Preference 1");
         l5 = new JLabel("Preference 2");
@@ -81,6 +84,8 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
         jta2 = new JTextArea();
         r1 = new JRadioButton("Male", false);
         r2 = new JRadioButton("Female", false);
+        r3 = new JRadioButton("Hostel", false);
+        r4 = new JRadioButton("Day Scholar", false);
         bg = new ButtonGroup();
         bg.add(r1);
         bg.add(r2);
@@ -148,7 +153,13 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
         cb7.addItem("2021");
 
         setLayout(null);
-        l1.setBounds(5, 5, 200, 30);
+        l0.setBounds(5, 35, 250, 30);
+        add(l0);
+        r3.setBounds(105, 35, 100, 30);
+        add(r3);
+        r4.setBounds(215, 35, 120, 30);
+        add(r4);
+        l1.setBounds(5, 5, 250, 30);
         add(l1);
         l3.setBounds(5, 105, 100, 30);
         add(l3);
@@ -164,10 +175,10 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
         cb4.setBounds(205, 135, 220, 30);
         add(l6);
         add(cb4);
-        l7.setBounds(5, 165, 200, 30);
+        l7.setBounds(5, 205, 250, 30);
         add(l7);
-        l8.setBounds(5, 195, 150, 30);
-        t1.setBounds(130, 195, 160, 30);
+        l8.setBounds(5, 235, 150, 30);
+        t1.setBounds(130, 235, 160, 30);
         add(l8);
         add(t1);
         l10.setBounds(5, 275, 100, 30);
@@ -188,7 +199,7 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
         t4.setBounds(130, 395, 100, 30);
         add(l13);
         add(t4);
-        l14.setBounds(5, 435, 200, 30);
+        l14.setBounds(5, 435, 250, 30);
         add(l14);
         l15.setBounds(5, 465, 100, 30);
         t5.setBounds(130, 465, 150, 30);
@@ -206,7 +217,7 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
         t6.setBounds(605, 5, 90, 30);
         add(l18);
         add(t6);
-        l19.setBounds(500, 40, 200, 30);
+        l19.setBounds(500, 40, 250, 30);
         add(l19);
         l20.setBounds(500, 70, 100, 30);
         add(l20);
@@ -245,7 +256,7 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
         add(l29);
         add(t12);
 
-        l37.setBounds(850, 0, 250, 30);
+        l37.setBounds(850, 0, 350, 30);
         add(l37);
         l38.setBounds(850, 35, 100, 30);
         t17.setBounds(1005, 35, 100, 30);
@@ -273,11 +284,24 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
         add(l45);
         l46.setBounds(5, 630, 1300, 20);
         add(l46);
+
+        f = new Font("Arial", Font.BOLD, 18);
+        l1.setFont(f);
+        l7.setFont(f);
+        l14.setFont(f);
+        l19.setFont(f);
+        l37.setFont(f);
+
         Color customGreen = new Color(0, 202, 78);
         b1.setBackground(customGreen);
         b1.setForeground(Color.white);
         b1.setBounds(550, 660, 100, 30);
         add(b1);
+
+        bgLabel = new JLabel(new ImageIcon("admissionFormbg.png"));
+        bgLabel.setBounds(0, -5, 1300, 730);
+        add(bgLabel);
+
         b1.addActionListener(this);
     }
 
@@ -327,68 +351,90 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
                 String fm = t20.getText();
                 String mn = t21.getText();
                 String mm = t22.getText();
-                Database db = new Database();
-                con = db.connect();
-                ps7 = con.prepareStatement("select nextval('seq');");
-                rs = ps7.executeQuery();
-                rs.next();
-                an = rs.getInt(1);
-                System.out.println(" Value : " + an);
-                ps8 = con.prepareStatement("insert into appno values(?)");
-                ps8.setInt(1, an);
-                ps8.executeUpdate();
-                ps = con.prepareStatement("insert into merit_details values(?,?,?,?,?)");
-                ps.setInt(1, an);
-                ps.setString(2, dl);
-                ps.setString(3, pr1);
-                ps.setString(4, pr2);
-                ps.setString(5, pr3);
-                ps.executeUpdate();
-                ps1 = con.prepareStatement("insert into candidate_details values(?,?,?,?,?,?,?)");
-                ps1.setInt(1, an);
-                ps1.setString(2, cn);
-                ps1.setString(3, cd);
-                ps1.setString(4, cg);
-                ps1.setString(5, cc);
-                ps1.setString(6, cm);
-                ps1.setString(7, ce);
-                ps1.executeUpdate();
-                ps2 = con.prepareStatement("insert into candidate_address values(?,?,?,?,?)");
-                ps2.setInt(1, an);
-                ps2.setString(2, ad);
-                ps2.setString(3, ci);
-                ps2.setString(4, st);
-                ps2.setString(5, pi);
-                ps2.executeUpdate();
-                ps3 = con.prepareStatement("insert into school_details values(?,?,?,?,?,?,?,?,?,?,?,?)");
-                ps3.setInt(1, an);
-                ps3.setString(2, sn);
-                ps3.setString(3, sb);
-                ps3.setString(4, sc);
-                ps3.setString(5, sa);
-                ps3.setString(6, sy);
-                ps3.setInt(7, p);
-                ps3.setInt(8, c);
-                ps3.setInt(9, m);
-                ps3.setFloat(10, a);
-                ps3.setInt(11, jee);
-                ps3.setFloat(12, (float) (jee));
-                ps3.executeUpdate();
+                if (t4.getText().matches("^[0-9]*$") && t4.getText().length() == 10 && t20.getText().matches("^[0-9]*$")
+                        && t20.getText().length() == 10 && t22.getText().matches("^[0-9]*$")
+                        && t22.getText().length() == 10 && t2.getText().matches("[\\w]+@[\\w]+\\.[a-zA-Z]{2,3}") && t3.getText().matches("\\d{2}-\\d{2}-\\d{4}") && t6.getText().length() == 5 && t6.getText().matches("^[0-9]*$")) {
+                    Database db = new Database();
+                    con = db.connect();
+                    ps7 = con.prepareStatement("select nextval('seq');");
+                    rs = ps7.executeQuery();
+                    rs.next();
+                    an = rs.getInt(1);
+                    System.out.println(" Value : " + an);
+                    ps8 = con.prepareStatement("insert into appno values(?)");
+                    ps8.setInt(1, an);
+                    ps8.executeUpdate();
+                    ps = con.prepareStatement("insert into merit_details values(?,?,?,?,?)");
+                    ps.setInt(1, an);
+                    ps.setString(2, dl);
+                    ps.setString(3, pr1);
+                    ps.setString(4, pr2);
+                    ps.setString(5, pr3);
+                    ps.executeUpdate();
+                    ps1 = con.prepareStatement("insert into candidate_details values(?,?,?,?,?,?,?)");
+                    ps1.setInt(1, an);
+                    ps1.setString(2, cn);
+                    ps1.setString(3, cd);
+                    ps1.setString(4, cg);
+                    ps1.setString(5, cc);
+                    ps1.setString(6, cm);
+                    ps1.setString(7, ce);
+                    ps1.executeUpdate();
+                    ps2 = con.prepareStatement("insert into candidate_address values(?,?,?,?,?)");
+                    ps2.setInt(1, an);
+                    ps2.setString(2, ad);
+                    ps2.setString(3, ci);
+                    ps2.setString(4, st);
+                    ps2.setString(5, pi);
+                    ps2.executeUpdate();
+                    ps3 = con.prepareStatement("insert into school_details values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                    ps3.setInt(1, an);
+                    ps3.setString(2, sn);
+                    ps3.setString(3, sb);
+                    ps3.setString(4, sc);
+                    ps3.setString(5, sa);
+                    ps3.setString(6, sy);
+                    ps3.setInt(7, p);
+                    ps3.setInt(8, c);
+                    ps3.setInt(9, m);
+                    ps3.setFloat(10, a);
+                    ps3.setInt(11, jee);
+                    ps3.setFloat(12, (float) (jee));
+                    ps3.executeUpdate();
 
-                ps6 = con.prepareStatement("insert into parents_details values(?,?,?,?,?)");
-                ps6.setInt(1, an);
-                ps6.setString(2, fn);
-                ps6.setString(3, fm);
-                ps6.setString(4, mn);
-                ps6.setString(5, mm);
-                ps6.executeUpdate();
-                ps9 = con.prepareStatement("insert into fee values(?,?)");
-                ps9.setInt(1, an);
-                ps9.setString(2, "unpaid");
-                ps9.executeUpdate();
-                JOptionPane.showMessageDialog(null, " THANK YOU.... \n YOUR DETAILS HAVE BEEN SUBMITTED");
-                JOptionPane.showMessageDialog(null, " YOUR APPLICATION NO. :" + an);
-                dispose();
+                    ps6 = con.prepareStatement("insert into parents_details values(?,?,?,?,?)");
+                    ps6.setInt(1, an);
+                    ps6.setString(2, fn);
+                    ps6.setString(3, fm);
+                    ps6.setString(4, mn);
+                    ps6.setString(5, mm);
+                    ps6.executeUpdate();
+                    ps9 = con.prepareStatement("insert into fee values(?,?)");
+                    ps9.setInt(1, an);
+                    ps9.setString(2, "unpaid");
+                    ps9.executeUpdate();
+                    JOptionPane.showMessageDialog(null, " THANK YOU.... \n YOUR DETAILS HAVE BEEN SUBMITTED");
+                    JOptionPane.showMessageDialog(null, " YOUR APPLICATION NO. :" + an);
+                    dispose();
+                } else {
+                    if(!t2.getText().matches("[\\w]+@[\\w]+\\.[a-zA-Z]{2,3}")){
+                        JOptionPane.showMessageDialog(null, " ENTER VALID EMAIL ID");
+                    }
+                    else if(!t4.getText().matches("^[0-9]*$") || t4.getText().length() != 10 || !t20.getText().matches("^[0-9]*$")
+                    || t20.getText().length() != 10 || !t22.getText().matches("^[0-9]*$")
+                    || t22.getText().length() != 10){
+                        JOptionPane.showMessageDialog(null, " ENTER VALID MOBILE NUMBER");
+                    }
+                    else if(!t3.getText().matches("\\d{2}-\\d{2}-\\d{4}")){
+                        JOptionPane.showMessageDialog(null, " ENTER VALID DOB In DD-MM-YYYY");
+                    }
+                    else if(!t6.getText().matches("^[0-9]*$") || t6.getText().length() != 10){
+                        JOptionPane.showMessageDialog(null, " ENTER VALID PINCODE");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, " ENTER VALID DETAILS");
+                    }
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "NO FIELDS CAN BE LEFT EMPTY" + e);
             }
@@ -398,7 +444,7 @@ public class AdmissionLogin extends JFrame implements ActionListener, FocusListe
     public static void main(String[] args) {
         Color customBlue = new Color(53, 204, 237);
 
-        AdmissionLogin adf = new AdmissionLogin("Admission Form");
+        AdmissionForm adf = new AdmissionForm("Admission Form");
         adf.setSize(1300, 730);
         adf.setLocation(30, 0);
         adf.setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -3,7 +3,7 @@ package forms;
 import java.sql.*;
 
 public class Database {
-    public static String urld = "jdbc:postgresql://localhost:5432/final_db";
+    public static String urld = "jdbc:postgresql://localhost:5432/java_eval";
     public static String user = "postgres";
     public static String pass = "";
     public static Connection con = null;
